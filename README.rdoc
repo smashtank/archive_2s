@@ -18,10 +18,10 @@ fetch by id only (as all that is saved is the id and a value of a method)
 All objects returned are readonly.
 
 ==Todo
- *  make some proxy magic so if one calls a relationship if can search the archive too
- *  use wants rather then returning based on length
- *  drop the id column and use the index for the model
- *  make the doco usefull
+*  make some proxy magic so if one calls a relationship if can search the archive too
+*  use wants rather then returning based on length
+*  drop the id column and use the index for the model
+*  make the doco usefull
 
 == Copyright
 
