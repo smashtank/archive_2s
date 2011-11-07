@@ -1,0 +1,30 @@
+= Archive 2s
+
+This gem provides the ability to archive a meaningful bit of information.  This is good for use with friendly_id or stats.
+It will save to a single table that is created via a migration copied from the rake task
+
+== Usage
+archive_2s accepts two optional parameters, :method_name and :include_by_default
+  class Item < ActiveRecord::Base
+    archive_2s :method_name => :name, :include_by_default => true
+
+    def name
+      [self.first_name, self.middle_initial, self.last_name].join(' ')
+    end
+  end
+:method_name is the methods return value you wish to save and :include_by_default will include archived results when you
+fetch by id only (as all that is saved is the id and a value of a method)
+
+All objects returned are readonly.
+
+==Todo
+ *  make some proxy magic so if one calls a relationship if can search the archive too
+ *  use wants rather then returning based on length
+ *  drop the id column and use the index for the model
+ *  make the doco usefull
+
+== Copyright
+
+Copyright (c) 2011 SmashTank Apps, LLC. See LICENSE.txt for
+further details.
+
