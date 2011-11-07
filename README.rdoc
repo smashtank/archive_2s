@@ -17,11 +17,22 @@ fetch by id only (as all that is saved is the id and a value of a method)
 
 All objects returned are readonly.
 
+== Migration
+See the last todo, this needs to me a generator/rake task but I am tired and want to goto sleep
+  create_table :archived_to_s do |t|
+    t.datetime  :archived_at
+    t.string    :model_type
+    t.integer   :model_id
+    t.string    :archived_value
+  end
+  add_index :archived_to_s, [:model_type,:model_id,:archived_at], :name => 'model_and_archive_date_idx', :unique => true
+
 ==Todo
 *  make some proxy magic so if one calls a relationship if can search the archive too
 *  use wants rather then returning based on length
 *  drop the id column and use the index for the model
 *  make the doco usefull
+*  make a generator for rails 2 and 3
 
 == Copyright
 
