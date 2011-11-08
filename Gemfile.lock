@@ -100,7 +100,6 @@ PLATFORMS
 
 DEPENDENCIES
   archive_2s!
-  bundler (>= 1.0.0)
   rails
   rspec
   sqlite3
