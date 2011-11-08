@@ -1,8 +1,7 @@
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'active_record'
-require 'action_controller'
-require 'spec'
+require 'rspec'
 require 'archive_2s'
 require 'sqlite3'
 
