@@ -71,6 +71,17 @@ describe Archive2s do
     end
   end
 
+  it "find_with_archived should return archived items too" do
+    item_one = Item.create(:name => 'Item One', :description => 'foo')
+    item_two = Item.create(:name => 'Item Two', :description => 'bar')
+    ids = [item_one.id, item_two.id]
+    item_two.destroy
+    items = Item.find_with_archived(ids)
+
+    items.length.should == 2
+    items.collect(&:id).include?(ids.last).should be_true
+  end
+
   it "should archive the default to_s" do
     thing_one = Thing.create(:name => 'Thing One', :description => 'foo')
     t_to_s = thing_one.to_s

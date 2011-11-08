@@ -27,23 +27,7 @@ module Archive2s
       if self.archive_2s_args[:include_by_default]
         singleton.module_eval do
           def find(*args)
-            begin
-              #might as well try AR first
-              super.find(*args)
-            rescue Exception => e
-              #can only fetch archived by ids so don't attempt if there were extra args
-              if args.flatten! && args.length != args.select{|i| i == i.to_i}.length
-                raise e
-              else
-                items = self.all(:conditions => ["id IN (#{(['?'] * args.length).join(',')})", *args])
-                items += [self.find_archived(*args - items.collect(&:id))].flatten
-                if args.length == items.length
-                  items
-                else
-                  raise e
-                end
-              end
-            end
+            self.find_with_archived(*args)
           end
         end
       end
@@ -86,6 +70,26 @@ module Archive2s
         archived_models
       else
         archived_models.first
+      end
+    end
+
+    def find_with_archived(*args)
+      begin
+        #might as well try AR first
+        super.find(*args)
+      rescue Exception => e
+        #can only fetch archived by ids so don't attempt if there were extra args
+        if args.flatten! && args.length != args.select{|i| i == i.to_i}.length
+          raise e
+        else
+          items = self.all(:conditions => ["id IN (#{(['?'] * args.length).join(',')})", *args])
+          items += [self.find_archived(*args - items.collect(&:id))].flatten
+          if args.length == items.length
+            items
+          else
+            raise e
+          end
+        end
       end
     end
   end
