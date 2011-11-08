@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    archive_2s (0.0.4)
+    archive_2s (0.0.5)
 
 GEM
   remote: http://rubygems.org/
