@@ -27,7 +27,7 @@ module Archive2s
       if self.archive_2s_args[:include_by_default]
         singleton.module_eval do
           def find(*args)
-            self.find_with_archived(*args)
+            super rescue self.find_with_archived(args)
           end
         end
       end
@@ -76,7 +76,7 @@ module Archive2s
     def find_with_archived(*args)
       begin
         #might as well try AR first
-        super.find(*args)
+        super.find(args)
       rescue Exception => e
         #can only fetch archived by ids so don't attempt if there were extra args
         if args.flatten! && args.length != args.select{|i| i == i.to_i}.length

@@ -14,13 +14,13 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = ">= 1.3.6"
   s.rubyforge_project         = "archive_2s"
 
-  s.add_development_dependency "bundler", ">= 1.0.0"
-
   s.files        = `git ls-files`.split("\n")
   s.executables  = `git ls-files`.split("\n").map{|f| f =~ /^bin\/(.*)/ ? $1 : nil}.compact
   s.require_path = 'lib'
 
-  s.add_development_dependency "rspec"
-  s.add_development_dependency "rails"
+  s.add_development_dependency "ruby-debug"
+  s.add_development_dependency "rails", "~> 2.3.12"
+  s.add_development_dependency "rspec", "~> 1.3.1"
+  s.add_development_dependency "rspec-rails"
   s.add_development_dependency "sqlite3"
 end
