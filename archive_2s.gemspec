@@ -20,9 +20,7 @@ Gem::Specification.new do |s|
   s.executables  = `git ls-files`.split("\n").map{|f| f =~ /^bin\/(.*)/ ? $1 : nil}.compact
   s.require_path = 'lib'
 
-  s.add_development_dependency "ruby-debug"
   s.add_development_dependency "rspec"
   s.add_development_dependency "rails"
   s.add_development_dependency "sqlite3"
-  s.add_development_dependency "rcov"
 end
