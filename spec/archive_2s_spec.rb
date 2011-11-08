@@ -94,6 +94,10 @@ describe Archive2s do
     archived_thing.readonly?.should be_true
   end
 
+  it "should not error when no params are passed in" do
+    lambda{class Foo < ActiveRecord::Base;archive_2s;end}.should_not raise_error
+  end
+
   #reload should do nothing, not sure how to test that though
 
 end
