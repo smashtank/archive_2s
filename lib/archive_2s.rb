@@ -5,7 +5,7 @@ module Archive2s
       :include_by_default => false
   }
   module ClassMethods
-    def archive_2s(args = nil)
+    def archive_2s(args = {})
       # don't allow multiple calls
       return if self.included_modules.include?(Archive2s::InstanceMethods)
 
